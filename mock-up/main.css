@@ -1,0 +1,25 @@
+body {
+  font-family: sans-serif;
+}
+
+.calc-app {
+  display: inline-block;
+}
+
+.display {
+  height: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  font-size: 3em;;
+  text-align: right;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  padding: 0;
+  border: 1px solid black;
+  background-color: white;
+  font-size: 100%;
+}
