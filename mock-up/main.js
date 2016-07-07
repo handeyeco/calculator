@@ -4,7 +4,7 @@ var calcApp = {
   prevNumber: "",
   operator: null,
 
-  addDigit: function (digit) {
+  addDigit: function(digit) {
     if (this.currNumber.length < 9) {
       this.prevNumber = this.currNumber;
       this.currNumber = this.currNumber.concat(digit)
@@ -12,7 +12,7 @@ var calcApp = {
     }
   },
 
-  clearer: function (operation) {
+  clearer: function(operation) {
     if (operation === "ALL") {
       this.prevNumber = "";
       this.currNumber = "";
@@ -26,8 +26,8 @@ var calcApp = {
     }
   },
 
-  unary: function (operation) {
-    if (this.currNumber === ""){
+  unary: function(operation) {
+    if (this.currNumber === "") {
       this.currNumber = this.baseNumber;
       this.baseNumber = "";
     }
@@ -45,28 +45,28 @@ var calcApp = {
     }
   },
 
-  reducer: function (operation) {
+  reducer: function(operation) {
     if (this.baseNumber === "" && this.currNumber !== "") {
       this.baseNumber = this.currNumber;
       this.currNumber = "";
       this.operator = operation;
     } else if (this.baseNumber !== "" && this.currNumber !== "" && this.operator) {
       var base = +this.baseNumber,
-          curr = +this.currNumber,
-          result;
+        curr = +this.currNumber,
+        result;
 
       switch (this.operator) {
         case "DIVIDE":
-          result = base / curr;
+          result = Math.div(base, curr);
           break;
         case "TIMES":
-          result = base * curr;
+          result = Math.mul(base, curr);
           break;
         case "SUB":
-          result = base - curr;
+          result = Math.sub(base, curr);
           break;
         case "ADD":
-          result = base + curr;
+          result = Math.add(base, curr);
           break;
       }
 
@@ -85,11 +85,11 @@ var calcApp = {
 };
 
 jQuery.noConflict();
-(function ($) {
-  $(function () {
+(function($) {
+  $(function() {
     var display = $(".display");
 
-    function updateDisplay () {
+    function updateDisplay() {
       if (calcApp.currNumber === "") {
         display.text(calcApp.baseNumber);
       } else {
@@ -97,31 +97,31 @@ jQuery.noConflict();
       }
     }
 
-    $(".number").click(function () {
+    $(".number").click(function() {
       var digit = $(this).val();
       calcApp.addDigit(digit);
       updateDisplay();
     });
 
-    $(".unary").click(function () {
+    $(".unary").click(function() {
       var operation = $(this).val();
       calcApp.unary(operation);
       updateDisplay();
     });
 
-    $(".clear").click(function () {
+    $(".clear").click(function() {
       var operation = $(this).val();
       calcApp.clearer(operation);
       updateDisplay();
     });
 
-    $(".binary").click(function () {
+    $(".binary").click(function() {
       var operation = $(this).val();
       calcApp.reducer(operation);
       updateDisplay();
     });
 
-    $(".equal").click(function () {
+    $(".equal").click(function() {
       var operation = $(this).val();
       calcApp.reducer(operation);
       updateDisplay();
