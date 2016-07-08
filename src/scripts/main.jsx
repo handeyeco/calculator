@@ -11,14 +11,20 @@ const Calculator = React.createClass({
     return {currentNumber: "", baseNumber: "", lastAction: ""}
   },
 
+  //When button is clicked toss button object
+  //and app state to TheFunction (a reducer? Kind of?)
   handleClick: function(event) {
     let state = this.state,
       actionObj = ButtonList.filter(elem => elem.display === event.target.innerHTML)[0],
       newState = TheFunction(state, actionObj);
 
+    //Every option from TheFunction should return a state
+    //or state change of some sort
     this.setState(newState);
   },
 
+  //A key generator
+  //returns a new number every time it's accessed
   keyGenerator: (function() {
     let key = 0;
 

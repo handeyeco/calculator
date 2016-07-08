@@ -14,6 +14,8 @@ function TheFunction(state, actionObj) {
       return handleClear(state.currentNumber, actionObj.action);
     case "equal":
       return handleEqual(state);
+    default:
+      return state;
   }
 }
 
@@ -49,6 +51,8 @@ function handleUnary(currentNumber, action) {
       //Multiple by -1 to switch sign
       currentNumber: Math.mul(currentNumber, -1) + ""
     };
+  } else {
+    return {};
   }
 }
 
@@ -58,6 +62,9 @@ function handleBinary(state, newAction) {
     action = state.lastAction,
     newBase;
 
+  //If a binary button is selected when a base number,
+  //current number, and action are in place, apply action
+  //as if user had selected the equal button first
   if (base && curr && action) {
     switch (action) {
       case "ADD":
@@ -79,13 +86,23 @@ function handleBinary(state, newAction) {
       baseNumber: newBase + "",
       lastAction: newAction
     };
-  }
 
-  return {
-    currentNumber: "",
-    baseNumber: curr + "",
-    lastAction: newAction
-  };
+  //Allow user to change the binary action
+  //after already selecting one
+  } else if (base && action && !curr) {
+    return {
+      lastAction: newAction
+    };
+
+  //Prepare for second number by moving current number
+  //to base number and adding action
+  } else {
+    return {
+      currentNumber: "",
+      baseNumber: curr + "",
+      lastAction: newAction
+    };
+  }
 }
 
 function handleEqual(state) {
@@ -94,6 +111,9 @@ function handleEqual(state) {
     action = state.lastAction,
     newBase;
 
+  //If a base number, current number, and action
+  //are in place and equal is selected
+  //perform action
   if (base && curr && action) {
     switch (action) {
       case "ADD":
@@ -115,16 +135,23 @@ function handleEqual(state) {
       baseNumber: "",
       lastAction: ""
     };
+  //If the state is not ready for a binary action,
+  //do nothing
+  } else {
+    return state;
   }
 }
 
 function handleClear(currentNumber, action) {
+  //Return to initial state
   if (action === "CLEAR_ALL") {
     return {
       currentNumber: "",
       baseNumber: "",
       lastAction: ""
     };
+  //Remove last digit on current number
+  //@TODO remove negative sign with last digit
   } else if (action === "CLEAR_ENTRY") {
     if (currentNumber) {
       return {
