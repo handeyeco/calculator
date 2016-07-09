@@ -1,2 +1,54 @@
 body {
-  background-color: gray; }
+  padding: 0;
+  margin: 0;
+  font-family: "Exo", sans-serif;
+  color: #003366;
+  text-align: center;
+  background-color: #669999; }
+
+h1 {
+  text-shadow: 1px 1px #CC6699, 2px 2px #CC6699, 3px 3px #CC6699;
+  text-align: left;
+  font-family: 'Kaushan Script';
+  font-size: 4vh;
+  margin: 0 0 1vh 3vw; }
+  h1 a, h1 a:link, h1 a:visited, h1 a:hover, h1 a:active {
+    text-decoration: none;
+    color: #003366; }
+
+.calc-app {
+  margin: 0;
+  display: inline-block;
+  background-color: #E1D7D2;
+  padding-bottom: 1vh; }
+  .calc-app .display {
+    font-family: "Exo", sans-serif;
+    text-align: right;
+    padding: 0 2vw;
+    font-size: 10vh;
+    height: 12vh;
+    width: 88vw;
+    overflow: scroll;
+    background-color: #F2ECE4;
+    border-top: 2vh solid #E1D7D2;
+    border-left: 2vw solid #E1D7D2;
+    border-right: 2vw solid #E1D7D2; }
+  .calc-app button {
+    width: 20vw;
+    height: 10vh;
+    margin: 1.5vh 1.5vw;
+    padding: 0;
+    font-size: 6vh;
+    font-family: "Exo", sans-serif;
+    background-color: #F2ECE4;
+    color: #003366;
+    border: 0;
+    touch-action: manipulation;
+    box-shadow: 1px 0 #003366, 0 1px #CC6699, 2px 1px #003366, 1px 2px #CC6699, 3px 2px #003366, 2px 3px #CC6699, 4px 3px #003366, 3px 4px #CC6699, 5px 4px #003366, 4px 5px #CC6699, 6px 5px #003366, 5px 6px #CC6699; }
+  .calc-app button:hover {
+    background-color: white; }
+  .calc-app button:focus {
+    background-color: white;
+    outline: none;
+    transform: translate(4px, 4px);
+    box-shadow: 1px 0 #003366, 0 1px #CC6699, 2px 1px #003366, 1px 2px #CC6699; }

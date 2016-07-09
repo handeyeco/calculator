@@ -8,7 +8,7 @@ import TheFunction from './theFunction.js';
 
 const Calculator = React.createClass({
   getInitialState: function() {
-    return {currentNumber: "", baseNumber: "", lastAction: ""}
+    return {currentNumber: "", baseNumber: "", lastAction: "", title: "hELL0"}
   },
 
   //When button is clicked toss button object
@@ -35,11 +35,11 @@ const Calculator = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <Display display={this.state.currentNumber || this.state.baseNumber}/>
+      <div className="empty">
+        <Display display={this.state.currentNumber || this.state.baseNumber || this.state.title}/>
         <ButtonRows handleClick={this.handleClick} keyGen={this.keyGenerator}/>
       </div>
-    )
+    );
   }
 });
 

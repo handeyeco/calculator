@@ -148,7 +148,8 @@ function handleClear(currentNumber, action) {
     return {
       currentNumber: "",
       baseNumber: "",
-      lastAction: ""
+      lastAction: "",
+      title: ""
     };
   //Remove last digit on current number
   //@TODO remove negative sign with last digit
